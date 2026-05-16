@@ -43,7 +43,7 @@ stdout returned as HTTP text
 
 Zero v0.1.1 can emit tiny static Linux executables directly. This repo ships one of those executables in a Cloudflare Container. The Worker routes HTTP to the container; the small Node adapter runs `/hello` and returns the Zero program's stdout.
 
-## Read this repo in 7 minutes
+## Repo map
 
 | Path | What it proves |
 |---|---|
