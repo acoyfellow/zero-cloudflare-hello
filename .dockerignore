@@ -1,0 +1,8 @@
+node_modules
+.wrangler
+.git
+.github
+.zero
+.tools
+.DS_Store
+npm-debug.log*

@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A Zero native executable, running in a Cloudflare Container, exposed by a tiny Worker.">
+<meta property="og:title" content="Zero on Cloudflare">
+<meta property="og:description" content="A 261-byte Zero Linux ELF runs inside a Cloudflare Container and answers HTTP through a tiny Worker.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zero.coey.dev/about">
+<meta name="twitter:card" content="summary">
+<title>Zero on Cloudflare</title>
+<style>
+  :root { color-scheme: light dark; font: 17px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  body { margin: 0; display: grid; min-height: 100vh; place-items: center; }
+  main { width: min(58rem, calc(100vw - 2rem)); }
+  a { color: inherit; }
+  pre, code { white-space: pre-wrap; }
+  pre { padding: 1rem; border: 1px solid currentColor; overflow: auto; }
+  nav { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0; }
+</style>
+<main>
+  <p><strong>zero.coey.dev</strong></p>
+  <h1>Zero on Cloudflare</h1>
+  <p>A Zero native executable, running in a Cloudflare Container, exposed by a tiny Worker.</p>
+  <pre><code>pub fun main(world: World) -&gt; Void raises {
+    check world.out.write("hello from Zero on Cloudflare infra\n")
+}</code></pre>
+  <nav>
+    <a href="/">Run it</a>
+    <a href="https://github.com/acoyfellow/zero-cloudflare-hello">Source</a>
+    <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/acoyfellow/zero-cloudflare-hello">Deploy to Cloudflare</a>
+    <a href="https://github.com/vercel-labs/zero">Zero</a>
+  </nav>
+  <p><code>/</code> returns stdout from the 261-byte Zero Linux ELF. This page lives at <code>/about</code> so the root URL stays the proof.</p>
+</main>

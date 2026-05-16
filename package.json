@@ -1,0 +1,26 @@
+{
+  "name": "zero-cloudflare-hello",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Run a tiny Zero native executable on Cloudflare Containers.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "build:zero": "sh scripts/build-zero.sh",
+    "container:build": "docker build --platform linux/amd64 -t zero-cloudflare-hello:local .",
+    "container:test": "docker run --rm --platform linux/amd64 -p 8080:8080 zero-cloudflare-hello:local"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "^0.3.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260430.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.86.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

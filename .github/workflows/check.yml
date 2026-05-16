@@ -1,0 +1,30 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install
+      - run: npm run typecheck
+      - run: npx wrangler deploy --dry-run
+      - run: docker build --platform linux/amd64 -t zero-cloudflare-hello:ci .
+      - name: Prove the container returns Zero stdout
+        run: |
+          docker run --rm -d --platform linux/amd64 -p 18080:8080 --name zero-cloudflare-hello-ci zero-cloudflare-hello:ci
+          for i in $(seq 1 30); do
+            body="$(curl -fsS http://127.0.0.1:18080/ || true)"
+            [ "$body" = "hello from Zero on Cloudflare infra" ] && exit 0
+            sleep 1
+          done
+          docker logs zero-cloudflare-hello-ci || true
+          exit 1
